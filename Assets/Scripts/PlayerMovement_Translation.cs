@@ -25,8 +25,6 @@ public class PlayerMovement_Translation : MonoBehaviour
 
         transform.position += Vector3.back;
 
-
-
         //float moveHorizontal = Input.GetAxisRaw("Horizontal");
         //float moveVertical = Input.GetAxisRaw("Vertical");
 
