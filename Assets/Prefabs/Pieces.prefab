@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 8900583692893021074}
   - component: {fileID: 8900583692893021077}
   - component: {fileID: 8900583692893021076}
+  - component: {fileID: 8044816672278400257}
   - component: {fileID: 8900583692893021079}
-  - component: {fileID: 8900583692893021072}
   m_Layer: 0
-  m_Name: Piece
+  m_Name: Pieces
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -93,6 +93,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8044816672278400257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8900583692893021078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44e16b441df84c9429c7fec35e462286, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  matBlue: {fileID: 0}
+  matRed: {fileID: 0}
+  matYellow: {fileID: 0}
+  matGreen: {fileID: 0}
 --- !u!114 &8900583692893021079
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109,19 +125,3 @@ MonoBehaviour:
   moving: 0
   rR: 1
   t: 1
---- !u!114 &8900583692893021072
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8900583692893021078}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44e16b441df84c9429c7fec35e462286, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  matBlue: {fileID: 2100000, guid: 232e0346490b6fb4c8874d2c137bed6c, type: 2}
-  matRed: {fileID: 2100000, guid: 54ad941b2df95ff44b165507425e9a14, type: 2}
-  matYellow: {fileID: 2100000, guid: ce4ee09e2b2ae0b43bf8e30d8caf8189, type: 2}
-  matGreen: {fileID: 2100000, guid: a3e52be6a4688e74787dc346033c0108, type: 2}
