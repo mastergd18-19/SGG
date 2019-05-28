@@ -9,8 +9,7 @@ public class Piece : MonoBehaviour
     public Material matYellow;
     public Material matGreen;
 
-    public Transform spawnPiece;
-    public GameObject spawnPieceObject;
+    
 
     PlayerMovement_Translation pm;
 
@@ -27,7 +26,7 @@ public class Piece : MonoBehaviour
     void Start()
     {
         pm = GetComponent<PlayerMovement_Translation>();
-
+        
         int randomNumber = Random.Range(1, 4);
 
         if (randomNumber == 1)
@@ -95,7 +94,9 @@ public class Piece : MonoBehaviour
         {
             pm.CancelInvoke();
         }
-        pm.CancelInvoke();        
+
+        pm.CancelInvoke();
+                
         //Instantiate(spawnPiece, spawnPieceObject.position, spawnPiece.rotation);
     }
 }
