@@ -4,99 +4,155 @@ using UnityEngine;
 
 public class Piece : MonoBehaviour
 {
-    public Material matBlue;
-    public Material matRed;
-    public Material matYellow;
-    public Material matGreen;
+	public Material matBlue;
+	public Material matRed;
+	public Material matYellow;
+	public Material matGreen;
+	public SpawnPieces spawnPiece;
+	private bool alreadyAttached = false;
 
-    
+	public BoxCollider upCollider;
+	public BoxCollider downCollider;
+	public BoxCollider leftCollider;
+	public BoxCollider rightCollider;
+	public SphereCollider detectionCollider;
 
-    PlayerMovement_Translation pm;
 
-    [SerializeField]
-    GameObject blueWall;
-    [SerializeField]
-    GameObject redWall;
-    [SerializeField]
-    GameObject yellowWall;
-    [SerializeField]
-    GameObject greenWall;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        pm = GetComponent<PlayerMovement_Translation>();
-        
-        int randomNumber = Random.Range(1, 4);
+	PlayerMovement_Translation pm;
 
-        if (randomNumber == 1)
-        {
-            GetComponent<Renderer>().material = matBlue;
-            this.gameObject.tag = "bluePiece";
-        }
+	[SerializeField]
+	GameObject blueWall;
+	[SerializeField]
+	GameObject redWall;
+	[SerializeField]
+	GameObject yellowWall;
+	[SerializeField]
+	GameObject greenWall;
 
-        else if (randomNumber == 2)
-        {
-            GetComponent<Renderer>().material = matRed;
-            this.gameObject.tag = "redPiece";
-        }
+	// Start is called before the first frame update
+	void Start()
+	{
+		pm = GetComponent<PlayerMovement_Translation>();
 
-        else if (randomNumber == 3)
-        {
-            GetComponent<Renderer>().material = matYellow;
-            this.gameObject.tag = "yellowPiece";
-        }
+		int randomNumber = Random.Range(1, 4);
 
-        else
-        {
-            GetComponent<Renderer>().material = matGreen;
-            this.gameObject.tag = "greenPiece";
-        }
+		if (randomNumber == 1)
+		{
+			GetComponent<Renderer>().material = matBlue;
+			this.gameObject.tag = "bluePiece";
+		}
 
-        blueWall = GameObject.Find("WallBlue");
-        redWall = GameObject.Find("WallRed");
-        yellowWall = GameObject.Find("WallYellow");
-        greenWall = GameObject.Find("WallGreen");
-    }
+		else if (randomNumber == 2)
+		{
+			GetComponent<Renderer>().material = matRed;
+			this.gameObject.tag = "redPiece";
+		}
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+		else if (randomNumber == 3)
+		{
+			GetComponent<Renderer>().material = matYellow;
+			this.gameObject.tag = "yellowPiece";
+		}
 
-    private void OnTriggerEnter(Collider col)
-    {
-        if (col.gameObject.CompareTag("blueWall"))
-        {
-            Debug.Log("BLUE");
-            this.transform.parent = blueWall.transform;            
-        }
+		else
+		{
+			GetComponent<Renderer>().material = matGreen;
+			this.gameObject.tag = "greenPiece";
+		}
 
-        else if (col.gameObject.CompareTag("redWall"))
-        {
-            Debug.Log("RED");
-            this.transform.parent = redWall.transform;
-        }
+		blueWall = GameObject.Find("WallBlue");
+		redWall = GameObject.Find("WallRed");
+		yellowWall = GameObject.Find("WallYellow");
+		greenWall = GameObject.Find("WallGreen");
+	}
 
-        else if (col.gameObject.CompareTag("yellowWall"))
-        {
-            Debug.Log("YELL");
-            this.transform.parent = yellowWall.transform;
-        }
+	private void OnTriggerEnter(Collider col)
+	{
+		if (alreadyAttached == false)
+		{
+			if (col.gameObject.CompareTag("blueWall"))
 
-        else if (col.gameObject.CompareTag("greenWall"))
-        {
-            Debug.Log("GREEN");
-            this.transform.parent = greenWall.transform;
-        }
-        else
-        {
-            pm.CancelInvoke();
-        }
+			{
+				//Debug.Log("BLUE");
+				this.transform.parent = blueWall.transform;
+				pm.CancelInvoke();
+				detectionCollider.enabled = true;
+				spawnPiece.spawnPiecex();
+				alreadyAttached = true;
+			}
 
-        pm.CancelInvoke();
-                
-        //Instantiate(spawnPiece, spawnPieceObject.position, spawnPiece.rotation);
-    }
+			else if (col.gameObject.CompareTag("redWall"))
+			{
+				//Debug.Log("RED");
+				this.transform.parent = redWall.transform;
+				pm.CancelInvoke();
+				detectionCollider.enabled = true;
+				spawnPiece.spawnPiecex();
+				alreadyAttached = true;
+			}
+
+			else if (col.gameObject.CompareTag("yellowWall"))
+			{
+				//Debug.Log("YELLOW");
+				this.transform.parent = yellowWall.transform;
+				pm.CancelInvoke();
+				detectionCollider.enabled = true;
+				spawnPiece.spawnPiecex();
+				alreadyAttached = true;
+			}
+
+			else if (col.gameObject.CompareTag("greenWall"))
+			{
+				//Debug.Log("GREEN");
+				this.transform.parent = greenWall.transform;
+				pm.CancelInvoke();
+				detectionCollider.enabled = true;
+				spawnPiece.spawnPiecex();
+				alreadyAttached = true;
+			}
+
+			//Colision con piezas
+
+			else if (col.gameObject.CompareTag("bluePiece"))
+			{
+				Debug.Log("BLUEPiece");
+				this.transform.parent = blueWall.transform;
+				pm.CancelInvoke();
+				detectionCollider.enabled = true;
+				spawnPiece.spawnPiecex();
+				alreadyAttached = true;
+			}
+
+			else if (col.gameObject.CompareTag("redPiece"))
+			{
+				Debug.Log("REDpiece");
+				this.transform.parent = blueWall.transform;
+				pm.CancelInvoke();
+				detectionCollider.enabled = true;
+				spawnPiece.spawnPiecex();
+				alreadyAttached = true;
+			}
+
+			else if (col.gameObject.CompareTag("yellowPiece"))
+			{
+				Debug.Log("YELLOWpiece");				
+				this.transform.parent = blueWall.transform;
+				pm.CancelInvoke();
+				detectionCollider.enabled = true;
+				spawnPiece.spawnPiecex();
+				alreadyAttached = true;
+			}
+
+			else if (col.gameObject.CompareTag("greenPiece"))
+			{
+				Debug.Log("GREENpiece");				
+				this.transform.parent = blueWall.transform;
+				pm.CancelInvoke();
+				detectionCollider.enabled = true;
+				spawnPiece.spawnPiecex();
+				alreadyAttached = true;
+			}
+		}
+	}
 }

@@ -3,7 +3,17 @@ guid: 44e16b441df84c9429c7fec35e462286
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - matBlue: {instanceID: 0}
+  - matRed: {instanceID: 0}
+  - matYellow: {instanceID: 0}
+  - matGreen: {instanceID: 0}
+  - blueWall: {instanceID: 0}
+  - redWall: {instanceID: 0}
+  - yellowWall: {instanceID: 0}
+  - greenWall: {instanceID: 0}
+  - spawnPiece: {fileID: 8900583692893021078, guid: 6bb0904939b46084c86a24123719ac69,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
