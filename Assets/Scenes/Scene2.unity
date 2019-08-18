@@ -1529,7 +1529,6 @@ GameObject:
   - component: {fileID: 1670768819}
   - component: {fileID: 1670768823}
   - component: {fileID: 1670768822}
-  - component: {fileID: 1670768821}
   - component: {fileID: 1670768820}
   m_Layer: 0
   m_Name: Floor2
@@ -1564,19 +1563,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7356d4ec44bd1d42971587fe5d2e965, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!65 &1670768821
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1670768818}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1670768822
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1724,7 +1710,6 @@ GameObject:
   - component: {fileID: 1881867899}
   - component: {fileID: 1881867903}
   - component: {fileID: 1881867902}
-  - component: {fileID: 1881867901}
   - component: {fileID: 1881867900}
   m_Layer: 0
   m_Name: Floor1
@@ -1759,19 +1744,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7356d4ec44bd1d42971587fe5d2e965, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!65 &1881867901
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1881867898}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1881867902
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2172,6 +2144,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8044816672278400257, guid: 6bb0904939b46084c86a24123719ac69,
+        type: 3}
+      propertyPath: myPiece
+      value: 
+      objectReference: {fileID: 109874352}
     - target: {fileID: 8900583692893021075, guid: 6bb0904939b46084c86a24123719ac69,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2227,20 +2204,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8900583692893021075, guid: 6bb0904939b46084c86a24123719ac69,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8900583692893021075, guid: 6bb0904939b46084c86a24123719ac69,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8044816672278400257, guid: 6bb0904939b46084c86a24123719ac69,
-        type: 3}
-      propertyPath: myPiece
-      value: 
-      objectReference: {fileID: 109874352}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6bb0904939b46084c86a24123719ac69, type: 3}

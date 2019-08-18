@@ -12,6 +12,11 @@ TagManager:
   - greenWall
   - redWall
   - yellowWall
+  - redPieces
+  - bluePieces
+  - greenPieces
+  - yellowPieces
+  - destroyPieces
   layers:
   - Default
   - TransparentFX

@@ -16,6 +16,10 @@ public class Piece : MonoBehaviour
 	public BoxCollider leftCollider;
 	public BoxCollider rightCollider;
 	public SphereCollider detectionCollider;
+	static int destroyBlue;
+	static int destroyRed;
+	static int destroyYellow;
+	static int destroyGreen;
 
 
 
@@ -67,6 +71,12 @@ public class Piece : MonoBehaviour
 		greenWall = GameObject.Find("WallGreen");
 	}
 
+	private void Update()
+	{
+
+	}
+
+	//Al chocar la pieza con otra pieza o con un borde del escenario
 	private void OnTriggerEnter(Collider col)
 	{
 		if (alreadyAttached == false)
@@ -74,7 +84,6 @@ public class Piece : MonoBehaviour
 			if (col.gameObject.CompareTag("blueWall"))
 
 			{
-				//Debug.Log("BLUE");
 				this.transform.parent = blueWall.transform;
 				pm.CancelInvoke();
 				detectionCollider.enabled = true;
@@ -84,7 +93,6 @@ public class Piece : MonoBehaviour
 
 			else if (col.gameObject.CompareTag("redWall"))
 			{
-				//Debug.Log("RED");
 				this.transform.parent = redWall.transform;
 				pm.CancelInvoke();
 				detectionCollider.enabled = true;
@@ -94,7 +102,6 @@ public class Piece : MonoBehaviour
 
 			else if (col.gameObject.CompareTag("yellowWall"))
 			{
-				//Debug.Log("YELLOW");
 				this.transform.parent = yellowWall.transform;
 				pm.CancelInvoke();
 				detectionCollider.enabled = true;
@@ -104,7 +111,6 @@ public class Piece : MonoBehaviour
 
 			else if (col.gameObject.CompareTag("greenWall"))
 			{
-				//Debug.Log("GREEN");
 				this.transform.parent = greenWall.transform;
 				pm.CancelInvoke();
 				detectionCollider.enabled = true;
@@ -112,42 +118,40 @@ public class Piece : MonoBehaviour
 				alreadyAttached = true;
 			}
 
-			//Colision con piezas
+			/////////////////////////////////////////////////////////////////
+			//Colision con piezas///////////////////////////////////////////
+			///////////////////////////////////////////////////////////////
 
-			else if (col.gameObject.CompareTag("bluePiece"))
+			else if (col.gameObject.CompareTag("bluePiece") || col.gameObject.CompareTag("bluePieces"))
 			{
-				Debug.Log("BLUEPiece");
-				this.transform.parent = blueWall.transform;
+				this.transform.parent = col.gameObject.transform;
 				pm.CancelInvoke();
 				detectionCollider.enabled = true;
 				spawnPiece.spawnPiecex();
 				alreadyAttached = true;
 			}
 
-			else if (col.gameObject.CompareTag("redPiece"))
+			else if (col.gameObject.CompareTag("redPiece") || col.gameObject.CompareTag("redPieces"))
 			{
-				Debug.Log("REDpiece");
-				this.transform.parent = blueWall.transform;
+				this.transform.parent = col.gameObject.transform;
 				pm.CancelInvoke();
 				detectionCollider.enabled = true;
 				spawnPiece.spawnPiecex();
 				alreadyAttached = true;
 			}
 
-			else if (col.gameObject.CompareTag("yellowPiece"))
+			else if (col.gameObject.CompareTag("yellowPiece") || col.gameObject.CompareTag("yellowPieces"))
 			{
-				Debug.Log("YELLOWpiece");				
-				this.transform.parent = blueWall.transform;
+				this.transform.parent = col.gameObject.transform;
 				pm.CancelInvoke();
 				detectionCollider.enabled = true;
 				spawnPiece.spawnPiecex();
 				alreadyAttached = true;
 			}
 
-			else if (col.gameObject.CompareTag("greenPiece"))
+			else if (col.gameObject.CompareTag("greenPiece") || col.gameObject.CompareTag("greenPieces"))
 			{
-				Debug.Log("GREENpiece");				
-				this.transform.parent = blueWall.transform;
+				this.transform.parent = col.gameObject.transform;
 				pm.CancelInvoke();
 				detectionCollider.enabled = true;
 				spawnPiece.spawnPiecex();
@@ -155,4 +159,91 @@ public class Piece : MonoBehaviour
 			}
 		}
 	}
+
+	private void OnTriggerStay(Collider col)
+	{
+		if (alreadyAttached==true)
+		{
+			if (this.CompareTag("bluePiece"))
+			{
+				if (col.gameObject.CompareTag("bluePiece"))
+				{
+					this.gameObject.tag = "bluePieces";
+					col.gameObject.tag = "bluePieces";
+				}
+				else if (col.gameObject.CompareTag("bluePieces"))
+				{
+					this.gameObject.tag = "destroyPieces";
+					col.gameObject.tag = "destroyPieces";
+					DestroyPiecesWithTag();
+					//col.gameObject.tag = "destroyPieces";
+					//Destroy(GameObject.FindWithTag("destroyPieces"));
+				}
+			}
+
+			if (this.CompareTag("redPiece")) 
+			{
+				if (col.gameObject.CompareTag("redPiece"))
+				{
+					this.gameObject.tag = "redPieces";
+					col.gameObject.tag = "redPieces";
+				}
+				else if (col.gameObject.CompareTag("redPieces"))
+				{
+					this.gameObject.tag = "destroyPieces";
+					col.gameObject.tag = "destroyPieces";
+					DestroyPiecesWithTag();
+					//col.gameObject.tag = "destroyPieces";
+					//Destroy(GameObject.FindWithTag("destroyPieces"));
+				}
+			}
+
+			if (this.CompareTag("yellowPiece"))
+			{
+				if (col.gameObject.CompareTag("yellowPiece"))
+				{
+					this.gameObject.tag = "yellowPieces";
+					col.gameObject.tag = "yellowPieces";
+				}
+				else if (col.gameObject.CompareTag("yellowPieces"))
+				{
+					this.gameObject.tag = "destroyPieces";
+					col.gameObject.tag = "destroyPieces";
+					DestroyPiecesWithTag();
+					//col.gameObject.tag = "destroyPieces";
+					//Destroy(GameObject.FindWithTag("destroyPieces"));
+				}
+			}
+
+			if (this.CompareTag("greenPiece")) 
+			{
+				if (col.gameObject.CompareTag("greenPiece"))
+				{
+					this.gameObject.tag = "greenPieces";
+					col.gameObject.tag = "greenPieces";
+				}
+				else if (col.gameObject.CompareTag("greenPieces"))
+				{
+					this.gameObject.tag = "destroyPieces";
+					col.gameObject.tag = "destroyPieces";
+					DestroyPiecesWithTag();
+					//col.gameObject.tag = "destroyPieces";
+					//Destroy(GameObject.FindWithTag("destroyPieces"));
+				}
+			}
+		}
+	}
+
+	void DestroyPiecesWithTag()
+	{
+		GameObject[] pieces = GameObject.FindGameObjectsWithTag("destroyPieces");
+		for (int i = 0; i < pieces.Length; i++)
+		{
+			Destroy(pieces[i]);
+		}
+	}
+
+	leerrrrrr
+	//Una vez me destruyo las 3, estaban en L, otras veces solo me destruye dos.
+	//Intentar taggear todas las que colisionen para que me las destruya todas las que tengan ese tag: Ver para que el OnTriggerStay se ejecute mas veces
 }
