@@ -165,70 +165,66 @@ public class Piece : MonoBehaviour
 		if (alreadyAttached==true)
 		{
 			if (this.CompareTag("bluePiece"))
-			{
-				if (col.gameObject.CompareTag("bluePiece"))
-				{
-					this.gameObject.tag = "bluePieces";
-					col.gameObject.tag = "bluePieces";
-				}
-				else if (col.gameObject.CompareTag("bluePieces"))
+			{				
+				if (col.gameObject.CompareTag("bluePieces"))
 				{
 					this.gameObject.tag = "destroyPieces";
 					col.gameObject.tag = "destroyPieces";
 					DestroyPiecesWithTag();
-					//col.gameObject.tag = "destroyPieces";
-					//Destroy(GameObject.FindWithTag("destroyPieces"));
+				}
+				if (col.gameObject.CompareTag("bluePiece"))
+				{
+					this.gameObject.tag = "bluePieces";
+					col.gameObject.tag = "bluePieces";
+					DestroyPiecesWithTag();
 				}
 			}
 
 			if (this.CompareTag("redPiece")) 
 			{
+				if (col.gameObject.CompareTag("redPieces"))
+				{
+					this.gameObject.tag = "destroyPieces";
+					col.gameObject.tag = "destroyPieces";
+					DestroyPiecesWithTag();
+				}
 				if (col.gameObject.CompareTag("redPiece"))
 				{
 					this.gameObject.tag = "redPieces";
 					col.gameObject.tag = "redPieces";
-				}
-				else if (col.gameObject.CompareTag("redPieces"))
-				{
-					this.gameObject.tag = "destroyPieces";
-					col.gameObject.tag = "destroyPieces";
 					DestroyPiecesWithTag();
-					//col.gameObject.tag = "destroyPieces";
-					//Destroy(GameObject.FindWithTag("destroyPieces"));
-				}
+				}				
 			}
 
 			if (this.CompareTag("yellowPiece"))
 			{
+				if (col.gameObject.CompareTag("yellowPieces"))
+				{
+					this.gameObject.tag = "destroyPieces";
+					col.gameObject.tag = "destroyPieces";
+					DestroyPiecesWithTag();
+				}
 				if (col.gameObject.CompareTag("yellowPiece"))
 				{
 					this.gameObject.tag = "yellowPieces";
 					col.gameObject.tag = "yellowPieces";
-				}
-				else if (col.gameObject.CompareTag("yellowPieces"))
+					DestroyPiecesWithTag();
+				}				
+			}
+
+			if (this.CompareTag("greenPiece")) 
+			{				
+				if (col.gameObject.CompareTag("greenPieces"))
 				{
 					this.gameObject.tag = "destroyPieces";
 					col.gameObject.tag = "destroyPieces";
 					DestroyPiecesWithTag();
-					//col.gameObject.tag = "destroyPieces";
-					//Destroy(GameObject.FindWithTag("destroyPieces"));
 				}
-			}
-
-			if (this.CompareTag("greenPiece")) 
-			{
 				if (col.gameObject.CompareTag("greenPiece"))
 				{
 					this.gameObject.tag = "greenPieces";
 					col.gameObject.tag = "greenPieces";
-				}
-				else if (col.gameObject.CompareTag("greenPieces"))
-				{
-					this.gameObject.tag = "destroyPieces";
-					col.gameObject.tag = "destroyPieces";
 					DestroyPiecesWithTag();
-					//col.gameObject.tag = "destroyPieces";
-					//Destroy(GameObject.FindWithTag("destroyPieces"));
 				}
 			}
 		}
@@ -243,7 +239,7 @@ public class Piece : MonoBehaviour
 		}
 	}
 
-	leerrrrrr
+	//leerrrrrr
 	//Una vez me destruyo las 3, estaban en L, otras veces solo me destruye dos.
 	//Intentar taggear todas las que colisionen para que me las destruya todas las que tengan ese tag: Ver para que el OnTriggerStay se ejecute mas veces
 }
