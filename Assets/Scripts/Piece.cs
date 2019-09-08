@@ -173,6 +173,7 @@ public class Piece : MonoBehaviour
 		//En fila de 4 no lo hace - - cae -
 		//							  esta cambia tag bluepiece por bluepieces junto a la de la derecha y se quedan las 4 con el tag bluepieces
 		// A veces de forma random no lo hace xke si coge la colision de la pieza de la derecha que tiene bluepiece, setea ambas a bluepieces y las de la izquierda se quedan como estan...
+		//Podemos usar private Collider OnTriggerStay(collider col) y devolver col, y usarlo en otra funcion. puede ser bastante util para poder llamar a col en otro sitio
 		
 
 		if (alreadyAttached==true)
