@@ -167,11 +167,12 @@ public class Piece : MonoBehaviour
 			if (this.GetComponent<Renderer>().sharedMaterial == col.GetComponent<Renderer>().sharedMaterial)
 			{
 				this.gameObject.tag = "destroyPieces";
-				DestroyPiecesWithTag();
+				StartCoroutine(WaitForDestroy());
 			}
 		}
 		//En fila de 4 no lo hace - - cae -
 		//							  esta cambia tag bluepiece por bluepieces junto a la de la derecha y se quedan las 4 con el tag bluepieces
+		// A veces de forma random no lo hace xke si coge la colision de la pieza de la derecha que tiene bluepiece, setea ambas a bluepieces y las de la izquierda se quedan como estan...
 		
 
 		if (alreadyAttached==true)
@@ -232,6 +233,12 @@ public class Piece : MonoBehaviour
 				}
 			}
 		}
+	}
+
+	IEnumerator WaitForDestroy()
+	{
+		yield return new WaitForSeconds(0.2f);
+		DestroyPiecesWithTag();
 	}
 
 	void DestroyPiecesWithTag()
