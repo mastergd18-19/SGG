@@ -185,7 +185,7 @@ public class Piece : MonoBehaviour
 					this.gameObject.tag = "destroyPieces";
 					col.gameObject.tag = "destroyPieces";
 				}
-				if (col.gameObject.CompareTag("bluePiece"))
+				else if (col.gameObject.CompareTag("bluePiece"))
 				{
 					this.gameObject.tag = "bluePieces";
 					col.gameObject.tag = "bluePieces";
@@ -199,7 +199,7 @@ public class Piece : MonoBehaviour
 					this.gameObject.tag = "destroyPieces";
 					col.gameObject.tag = "destroyPieces";
 				}
-				if (col.gameObject.CompareTag("redPiece"))
+				else if (col.gameObject.CompareTag("redPiece"))
 				{
 					this.gameObject.tag = "redPieces";
 					col.gameObject.tag = "redPieces";
@@ -213,7 +213,7 @@ public class Piece : MonoBehaviour
 					this.gameObject.tag = "destroyPieces";
 					col.gameObject.tag = "destroyPieces";
 				}
-				if (col.gameObject.CompareTag("yellowPiece"))
+				else if (col.gameObject.CompareTag("yellowPiece"))
 				{
 					this.gameObject.tag = "yellowPieces";
 					col.gameObject.tag = "yellowPieces";
@@ -227,7 +227,7 @@ public class Piece : MonoBehaviour
 					this.gameObject.tag = "destroyPieces";
 					col.gameObject.tag = "destroyPieces";
 				}
-				if (col.gameObject.CompareTag("greenPiece"))
+				else if (col.gameObject.CompareTag("greenPiece"))
 				{
 					this.gameObject.tag = "greenPieces";
 					col.gameObject.tag = "greenPieces";
