@@ -162,6 +162,18 @@ public class Piece : MonoBehaviour
 
 	private void OnTriggerStay(Collider col)
 	{
+		if (col.gameObject.CompareTag("destroyPieces"))
+		{
+			if (this.GetComponent<Renderer>().sharedMaterial == col.GetComponent<Renderer>().sharedMaterial)
+			{
+				this.gameObject.tag = "destroyPieces";
+				DestroyPiecesWithTag();
+			}
+		}
+		//En fila de 4 no lo hace - - cae -
+		//							  esta cambia tag bluepiece por bluepieces junto a la de la derecha y se quedan las 4 con el tag bluepieces
+		
+
 		if (alreadyAttached==true)
 		{
 			if (this.CompareTag("bluePiece"))
@@ -170,13 +182,11 @@ public class Piece : MonoBehaviour
 				{
 					this.gameObject.tag = "destroyPieces";
 					col.gameObject.tag = "destroyPieces";
-					DestroyPiecesWithTag();
 				}
 				if (col.gameObject.CompareTag("bluePiece"))
 				{
 					this.gameObject.tag = "bluePieces";
 					col.gameObject.tag = "bluePieces";
-					DestroyPiecesWithTag();
 				}
 			}
 
@@ -186,13 +196,11 @@ public class Piece : MonoBehaviour
 				{
 					this.gameObject.tag = "destroyPieces";
 					col.gameObject.tag = "destroyPieces";
-					DestroyPiecesWithTag();
 				}
 				if (col.gameObject.CompareTag("redPiece"))
 				{
 					this.gameObject.tag = "redPieces";
 					col.gameObject.tag = "redPieces";
-					DestroyPiecesWithTag();
 				}				
 			}
 
@@ -202,13 +210,11 @@ public class Piece : MonoBehaviour
 				{
 					this.gameObject.tag = "destroyPieces";
 					col.gameObject.tag = "destroyPieces";
-					DestroyPiecesWithTag();
 				}
 				if (col.gameObject.CompareTag("yellowPiece"))
 				{
 					this.gameObject.tag = "yellowPieces";
 					col.gameObject.tag = "yellowPieces";
-					DestroyPiecesWithTag();
 				}				
 			}
 
@@ -218,13 +224,11 @@ public class Piece : MonoBehaviour
 				{
 					this.gameObject.tag = "destroyPieces";
 					col.gameObject.tag = "destroyPieces";
-					DestroyPiecesWithTag();
 				}
 				if (col.gameObject.CompareTag("greenPiece"))
 				{
 					this.gameObject.tag = "greenPieces";
 					col.gameObject.tag = "greenPieces";
-					DestroyPiecesWithTag();
 				}
 			}
 		}
@@ -238,8 +242,6 @@ public class Piece : MonoBehaviour
 			Destroy(pieces[i]);
 		}
 	}
-
-	//leerrrrrr
-	//Una vez me destruyo las 3, estaban en L, otras veces solo me destruye dos.
-	//Intentar taggear todas las que colisionen para que me las destruya todas las que tengan ese tag: Ver para que el OnTriggerStay se ejecute mas veces
 }
+
+
