@@ -4,24 +4,23 @@ using UnityEngine;
 
 public class Piece : MonoBehaviour
 {
+	private bool alreadyAttached = false;
+	static int destroyBlue;
+	static int destroyRed;
+	static int destroyYellow;
+	static int destroyGreen;
+	static int contador;
+
 	public Material matBlue;
 	public Material matRed;
 	public Material matYellow;
 	public Material matGreen;
 	public SpawnPieces spawnPiece;
-	private bool alreadyAttached = false;
-
 	public BoxCollider upCollider;
 	public BoxCollider downCollider;
 	public BoxCollider leftCollider;
 	public BoxCollider rightCollider;
 	public SphereCollider detectionCollider;
-	static int destroyBlue;
-	static int destroyRed;
-	static int destroyYellow;
-	static int destroyGreen;
-
-
 
 	PlayerMovement_Translation pm;
 
@@ -73,7 +72,7 @@ public class Piece : MonoBehaviour
 
 	private void Update()
 	{
-
+	
 	}
 
 	//Al chocar la pieza con otra pieza o con un borde del escenario
@@ -170,25 +169,22 @@ public class Piece : MonoBehaviour
 				StartCoroutine(WaitForDestroy());
 			}
 		}
-		//En fila de 4 no lo hace - - cae -
-		//							  esta cambia tag bluepiece por bluepieces junto a la de la derecha y se quedan las 4 con el tag bluepieces
-		// A veces de forma random no lo hace xke si coge la colision de la pieza de la derecha que tiene bluepiece, setea ambas a bluepieces y las de la izquierda se quedan como estan...
-		//Podemos usar private Collider OnTriggerStay(collider col) y devolver col, y usarlo en otra funcion. puede ser bastante util para poder llamar a col en otro sitio
-		
-
+  
 		if (alreadyAttached==true)
 		{
 			if (this.CompareTag("bluePiece"))
-			{				
+			{	
 				if (col.gameObject.CompareTag("bluePieces"))
 				{
 					this.gameObject.tag = "destroyPieces";
 					col.gameObject.tag = "destroyPieces";
+					contador = 0;
 				}
-				else if (col.gameObject.CompareTag("bluePiece"))
+				else if ((col.gameObject.CompareTag("bluePiece")) && (contador >= 100))
 				{
 					this.gameObject.tag = "bluePieces";
 					col.gameObject.tag = "bluePieces";
+					contador = 0;
 				}
 			}
 
@@ -198,11 +194,13 @@ public class Piece : MonoBehaviour
 				{
 					this.gameObject.tag = "destroyPieces";
 					col.gameObject.tag = "destroyPieces";
+					contador = 0;
 				}
-				else if (col.gameObject.CompareTag("redPiece"))
+				else if ((col.gameObject.CompareTag("redPiece")) && (contador >= 100))
 				{
 					this.gameObject.tag = "redPieces";
 					col.gameObject.tag = "redPieces";
+					contador = 0;
 				}				
 			}
 
@@ -212,11 +210,13 @@ public class Piece : MonoBehaviour
 				{
 					this.gameObject.tag = "destroyPieces";
 					col.gameObject.tag = "destroyPieces";
+					contador = 0;
 				}
-				else if (col.gameObject.CompareTag("yellowPiece"))
+				else if ((col.gameObject.CompareTag("yellowPiece")) && (contador >= 100))
 				{
 					this.gameObject.tag = "yellowPieces";
 					col.gameObject.tag = "yellowPieces";
+					contador = 0;
 				}				
 			}
 
@@ -226,13 +226,23 @@ public class Piece : MonoBehaviour
 				{
 					this.gameObject.tag = "destroyPieces";
 					col.gameObject.tag = "destroyPieces";
+					contador = 0;
 				}
-				else if (col.gameObject.CompareTag("greenPiece"))
+				else if ((col.gameObject.CompareTag("greenPiece")) && (contador >= 100))
 				{
 					this.gameObject.tag = "greenPieces";
 					col.gameObject.tag = "greenPieces";
+					contador = 0;
 				}
 			}
+		}
+
+		//Contador checkea 100 veces para en caso de que haya múltiples colisiones se quede con la colision que tenga mayor tag
+		contador++;
+		
+		if (contador >= 101)
+		{
+			contador = 0;
 		}
 	}
 
@@ -248,6 +258,7 @@ public class Piece : MonoBehaviour
 		for (int i = 0; i < pieces.Length; i++)
 		{
 			Destroy(pieces[i]);
+			Score.points = Score.points + 100;
 		}
 	}
 }
