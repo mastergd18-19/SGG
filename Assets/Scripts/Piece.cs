@@ -86,7 +86,6 @@ public class Piece : MonoBehaviour
 				this.transform.parent = blueWall.transform;
 				pm.CancelInvoke();
 				detectionCollider.enabled = true;
-				spawnPiece.spawnPiecex();
 				alreadyAttached = true;
 			}
 
@@ -95,7 +94,6 @@ public class Piece : MonoBehaviour
 				this.transform.parent = redWall.transform;
 				pm.CancelInvoke();
 				detectionCollider.enabled = true;
-				spawnPiece.spawnPiecex();
 				alreadyAttached = true;
 			}
 
@@ -104,7 +102,6 @@ public class Piece : MonoBehaviour
 				this.transform.parent = yellowWall.transform;
 				pm.CancelInvoke();
 				detectionCollider.enabled = true;
-				spawnPiece.spawnPiecex();
 				alreadyAttached = true;
 			}
 
@@ -113,7 +110,6 @@ public class Piece : MonoBehaviour
 				this.transform.parent = greenWall.transform;
 				pm.CancelInvoke();
 				detectionCollider.enabled = true;
-				spawnPiece.spawnPiecex();
 				alreadyAttached = true;
 			}
 
@@ -126,7 +122,6 @@ public class Piece : MonoBehaviour
 				this.transform.parent = col.gameObject.transform;
 				pm.CancelInvoke();
 				detectionCollider.enabled = true;
-				spawnPiece.spawnPiecex();
 				alreadyAttached = true;
 			}
 
@@ -135,7 +130,6 @@ public class Piece : MonoBehaviour
 				this.transform.parent = col.gameObject.transform;
 				pm.CancelInvoke();
 				detectionCollider.enabled = true;
-				spawnPiece.spawnPiecex();
 				alreadyAttached = true;
 			}
 
@@ -144,7 +138,6 @@ public class Piece : MonoBehaviour
 				this.transform.parent = col.gameObject.transform;
 				pm.CancelInvoke();
 				detectionCollider.enabled = true;
-				spawnPiece.spawnPiecex();
 				alreadyAttached = true;
 			}
 
@@ -153,7 +146,6 @@ public class Piece : MonoBehaviour
 				this.transform.parent = col.gameObject.transform;
 				pm.CancelInvoke();
 				detectionCollider.enabled = true;
-				spawnPiece.spawnPiecex();
 				alreadyAttached = true;
 			}
 		}
@@ -161,6 +153,7 @@ public class Piece : MonoBehaviour
 
 	private void OnTriggerStay(Collider col)
 	{
+
 		if (col.gameObject.CompareTag("destroyPieces"))
 		{
 			if (this.GetComponent<Renderer>().sharedMaterial == col.GetComponent<Renderer>().sharedMaterial)
@@ -169,7 +162,13 @@ public class Piece : MonoBehaviour
 				StartCoroutine(WaitForDestroy());
 			}
 		}
-  
+
+		else if (col.gameObject.CompareTag("startPoint"))
+		{
+			Time.timeScale = 0;
+			GameOver.endgame = true;
+		}
+
 		if (alreadyAttached==true)
 		{
 			if (this.CompareTag("bluePiece"))

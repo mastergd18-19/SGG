@@ -10,14 +10,22 @@ public class SpawnPieces : MonoBehaviour
 	public PlayerMovement_Translation movement;
 	int randomNumber;
 	int randomNumber2;
+	float repeat=0.5f;
 
 	void Start()
 	{
-		spawnPiecex();
+		spawnPiecex();		
 	}
 
 	public void spawnPiecex()
 	{
+		if (repeat > 2.0f)
+		{
+			repeat = repeat - 0.05f;
+		}
+
+		Invoke("spawnPiecex", repeat);
+
 		randomNumber = Random.Range(1, 12);
 		randomNumber2 = Random.Range(1, 2);
 

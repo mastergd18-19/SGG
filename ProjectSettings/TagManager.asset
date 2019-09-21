@@ -17,6 +17,8 @@ TagManager:
   - greenPieces
   - yellowPieces
   - destroyPieces
+  - startPoint
+  - gameOver
   layers:
   - Default
   - TransparentFX
