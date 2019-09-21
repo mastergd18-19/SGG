@@ -10,6 +10,8 @@ public class Piece : MonoBehaviour
 	static int destroyYellow;
 	static int destroyGreen;
 	static int contador;
+	bool destroy = false;
+	bool destroyBonus = false;
 
 	public Material matBlue;
 	public Material matRed;
@@ -38,27 +40,27 @@ public class Piece : MonoBehaviour
 	{
 		pm = GetComponent<PlayerMovement_Translation>();
 
-		int randomNumber = Random.Range(1, 4);
+		float randomNumber = Random.Range(0f, 4f);		
 
-		if (randomNumber == 1)
+		if ((randomNumber >= 0) && (randomNumber <= 1))
 		{
 			GetComponent<Renderer>().material = matBlue;
 			this.gameObject.tag = "bluePiece";
 		}
 
-		else if (randomNumber == 2)
+		else if ((randomNumber > 1) && (randomNumber <= 2))
 		{
 			GetComponent<Renderer>().material = matRed;
 			this.gameObject.tag = "redPiece";
 		}
 
-		else if (randomNumber == 3)
+		else if ((randomNumber > 2) && (randomNumber <= 3))
 		{
 			GetComponent<Renderer>().material = matYellow;
 			this.gameObject.tag = "yellowPiece";
 		}
 
-		else
+		else if ((randomNumber > 3) && (randomNumber <= 4))
 		{
 			GetComponent<Renderer>().material = matGreen;
 			this.gameObject.tag = "greenPiece";
@@ -68,11 +70,6 @@ public class Piece : MonoBehaviour
 		redWall = GameObject.Find("WallRed");
 		yellowWall = GameObject.Find("WallYellow");
 		greenWall = GameObject.Find("WallGreen");
-	}
-
-	private void Update()
-	{
-	
 	}
 
 	//Al chocar la pieza con otra pieza o con un borde del escenario
@@ -163,20 +160,37 @@ public class Piece : MonoBehaviour
 			}
 		}
 
+		else if (col.gameObject.CompareTag("destroyPiecesBonus"))
+		{
+			if (this.GetComponent<Renderer>().sharedMaterial == col.GetComponent<Renderer>().sharedMaterial)
+			{
+				this.gameObject.tag = "destroyPiecesBonus";
+				StartCoroutine(WaitForDestroyBonus());
+			}
+		}
+
 		else if (col.gameObject.CompareTag("startPoint"))
 		{
 			Time.timeScale = 0;
 			GameOver.endgame = true;
 		}
 
-		if (alreadyAttached==true)
+		if (alreadyAttached == true)
 		{
 			if (this.CompareTag("bluePiece"))
-			{	
+			{
 				if (col.gameObject.CompareTag("bluePieces"))
 				{
-					this.gameObject.tag = "destroyPieces";
-					col.gameObject.tag = "destroyPieces";
+					if ((transform.parent.parent.tag == "blueWall") || (transform.parent.tag == "blueWall"))
+					{
+						this.gameObject.tag = "destroyPiecesBonus";
+						col.gameObject.tag = "destroyPiecesBonus";
+					}
+					else
+					{
+						this.gameObject.tag = "destroyPieces";
+						col.gameObject.tag = "destroyPieces";
+					}
 					contador = 0;
 				}
 				else if ((col.gameObject.CompareTag("bluePiece")) && (contador >= 100))
@@ -187,12 +201,20 @@ public class Piece : MonoBehaviour
 				}
 			}
 
-			if (this.CompareTag("redPiece")) 
+			if (this.CompareTag("redPiece"))
 			{
 				if (col.gameObject.CompareTag("redPieces"))
 				{
-					this.gameObject.tag = "destroyPieces";
-					col.gameObject.tag = "destroyPieces";
+					if ((transform.parent.parent.tag == "redWall") || (transform.parent.tag == "redWall"))
+					{
+						this.gameObject.tag = "destroyPiecesBonus";
+						col.gameObject.tag = "destroyPiecesBonus";
+					}
+					else
+					{
+						this.gameObject.tag = "destroyPieces";
+						col.gameObject.tag = "destroyPieces";
+					}
 					contador = 0;
 				}
 				else if ((col.gameObject.CompareTag("redPiece")) && (contador >= 100))
@@ -200,15 +222,23 @@ public class Piece : MonoBehaviour
 					this.gameObject.tag = "redPieces";
 					col.gameObject.tag = "redPieces";
 					contador = 0;
-				}				
+				}
 			}
 
 			if (this.CompareTag("yellowPiece"))
 			{
 				if (col.gameObject.CompareTag("yellowPieces"))
 				{
-					this.gameObject.tag = "destroyPieces";
-					col.gameObject.tag = "destroyPieces";
+					if ((transform.parent.parent.tag == "yellowWall") || (transform.parent.tag == "yellowWall"))
+					{
+						this.gameObject.tag = "destroyPiecesBonus";
+						col.gameObject.tag = "destroyPiecesBonus";
+					}
+					else
+					{
+						this.gameObject.tag = "destroyPieces";
+						col.gameObject.tag = "destroyPieces";
+					}
 					contador = 0;
 				}
 				else if ((col.gameObject.CompareTag("yellowPiece")) && (contador >= 100))
@@ -216,15 +246,23 @@ public class Piece : MonoBehaviour
 					this.gameObject.tag = "yellowPieces";
 					col.gameObject.tag = "yellowPieces";
 					contador = 0;
-				}				
+				}
 			}
 
-			if (this.CompareTag("greenPiece")) 
-			{				
+			if (this.CompareTag("greenPiece"))
+			{
 				if (col.gameObject.CompareTag("greenPieces"))
 				{
-					this.gameObject.tag = "destroyPieces";
-					col.gameObject.tag = "destroyPieces";
+					if ((transform.parent.parent.tag == "greenWall") || (transform.parent.tag == "greenWall"))
+					{
+						this.gameObject.tag = "destroyPiecesBonus";
+						col.gameObject.tag = "destroyPiecesBonus";
+					}
+					else
+					{
+						this.gameObject.tag = "destroyPieces";
+						col.gameObject.tag = "destroyPieces";
+					}
 					contador = 0;
 				}
 				else if ((col.gameObject.CompareTag("greenPiece")) && (contador >= 100))
@@ -238,7 +276,7 @@ public class Piece : MonoBehaviour
 
 		//Contador checkea 100 veces para en caso de que haya múltiples colisiones se quede con la colision que tenga mayor tag
 		contador++;
-		
+
 		if (contador >= 101)
 		{
 			contador = 0;
@@ -247,8 +285,29 @@ public class Piece : MonoBehaviour
 
 	IEnumerator WaitForDestroy()
 	{
-		yield return new WaitForSeconds(0.2f);
-		DestroyPiecesWithTag();
+		yield return new WaitForSeconds(0.3f);
+		destroy = true;
+	}
+
+	IEnumerator WaitForDestroyBonus()
+	{
+		yield return new WaitForSeconds(0.3f);
+		destroyBonus = true;
+	}
+
+	private void FixedUpdate()
+	{
+		if (destroy == true)
+		{
+			DestroyPiecesWithTag();
+			destroy = false;
+		}
+
+		if (destroyBonus == true)
+		{
+			DestroyPiecesWithTagBonus();
+			destroyBonus = false;
+		}
 	}
 
 	void DestroyPiecesWithTag()
@@ -256,10 +315,42 @@ public class Piece : MonoBehaviour
 		GameObject[] pieces = GameObject.FindGameObjectsWithTag("destroyPieces");
 		for (int i = 0; i < pieces.Length; i++)
 		{
-			Destroy(pieces[i]);
-			Score.points = Score.points + 100;
+			if (pieces.Length == 3)
+			{
+				Score.points = Score.points + 100;
+			}
+			else if (pieces.Length == 4)
+			{
+				Score.points = Score.points + 125;
+			}
+			else if (pieces.Length == 5)
+			{
+				Score.points = Score.points + 150;
+			}
+
+			Destroy(pieces[i]);			
 		}
 	}
+
+	void DestroyPiecesWithTagBonus()
+	{
+		GameObject[] pieces = GameObject.FindGameObjectsWithTag("destroyPiecesBonus");
+		
+		for (int i = 0; i < pieces.Length; i++)
+		{
+			if (pieces.Length == 3)
+			{
+				Score.points = Score.points + 150;
+			}
+			else if (pieces.Length == 4)
+			{
+				Score.points = Score.points + 175;
+			}
+			else if (pieces.Length == 5)
+			{
+				Score.points = Score.points + 200;
+			}
+			Destroy(pieces[i]);			
+		}
+	}	
 }
-
-

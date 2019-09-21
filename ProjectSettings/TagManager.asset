@@ -19,6 +19,7 @@ TagManager:
   - destroyPieces
   - startPoint
   - gameOver
+  - destroyPiecesBonus
   layers:
   - Default
   - TransparentFX
