@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Score : MonoBehaviour
 {
-	public Text scoreText;
+	public TextMeshProUGUI scoreText;
 	private AudioSource pieceDestructionSound;
 	public static int points;
 	public static bool sound = false;
@@ -13,6 +14,7 @@ public class Score : MonoBehaviour
 	private void Start()
 	{
 		pieceDestructionSound = GetComponent<AudioSource>();
+		points = 0;
 	}
 	
 	void Update()

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameOver : MonoBehaviour
 {
@@ -8,13 +9,22 @@ public class GameOver : MonoBehaviour
 	public GameObject score;
 	public AudioSource gameOverSound;
 	public AudioSource song;
-	public static bool endgame=false;
+	public static bool endgame = false;
+	private bool enableBack = false;
 
 	public void Update()
 	{
 		if (endgame == true)
 		{
 			endGame();
+		}
+
+		if (enableBack == true)
+		{
+			if ((Input.GetKeyDown(KeyCode.Space)))
+			{
+				reloadMenu();
+			}
 		}
 	}
 
@@ -23,6 +33,13 @@ public class GameOver : MonoBehaviour
 		song.enabled = false;
 		gameOverSound.enabled = true;
 		canvasObject.enabled = true;
-		score.SetActive(false);		
+		score.SetActive(false);
+		enableBack = true;
+		endgame = false;
+	}
+
+	void reloadMenu()
+	{
+		SceneManager.LoadScene("Menu");
 	}
 }
