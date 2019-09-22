@@ -63,7 +63,7 @@ BoxCollider:
   m_GameObject: {fileID: 8900583692893021078}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.054419935, y: 1, z: 0.5159747}
   m_Center: {x: -0.5, y: 0, z: 0.0020223558}
@@ -76,7 +76,7 @@ BoxCollider:
   m_GameObject: {fileID: 8900583692893021078}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 0.05787909, y: 1, z: 0.5221231}
   m_Center: {x: 0.5, y: 0, z: 0.0027834177}
@@ -210,7 +210,7 @@ MonoBehaviour:
   moving: 0
   rR: 0.5
   t: 0.5
-  direction: 4
+  direction: 3
 --- !u!82 &4621005438582352053
 AudioSource:
   m_ObjectHideFlags: 0
