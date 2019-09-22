@@ -23,7 +23,7 @@ public class Piece : MonoBehaviour
 	public BoxCollider leftCollider;
 	public BoxCollider rightCollider;
 	public SphereCollider detectionCollider;
-
+	
 	PlayerMovement_Translation pm;
 
 	[SerializeField]
@@ -39,7 +39,7 @@ public class Piece : MonoBehaviour
 	void Start()
 	{
 		pm = GetComponent<PlayerMovement_Translation>();
-
+		
 		float randomNumber = Random.Range(0f, 4f);		
 
 		if ((randomNumber >= 0) && (randomNumber <= 1))
@@ -318,14 +318,17 @@ public class Piece : MonoBehaviour
 			if (pieces.Length == 3)
 			{
 				Score.points = Score.points + 100;
+				Score.sound = true;
 			}
 			else if (pieces.Length == 4)
 			{
 				Score.points = Score.points + 125;
+				Score.sound = true;
 			}
 			else if (pieces.Length == 5)
 			{
 				Score.points = Score.points + 150;
+				Score.sound = true;
 			}
 
 			Destroy(pieces[i]);			
@@ -341,14 +344,17 @@ public class Piece : MonoBehaviour
 			if (pieces.Length == 3)
 			{
 				Score.points = Score.points + 150;
+				Score.sound = true;
 			}
 			else if (pieces.Length == 4)
 			{
 				Score.points = Score.points + 175;
+				Score.sound = true;
 			}
 			else if (pieces.Length == 5)
 			{
 				Score.points = Score.points + 200;
+				Score.sound = true;
 			}
 			Destroy(pieces[i]);			
 		}

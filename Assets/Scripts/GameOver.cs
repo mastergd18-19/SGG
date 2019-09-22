@@ -6,7 +6,8 @@ public class GameOver : MonoBehaviour
 {
 	public Canvas canvasObject;
 	public GameObject score;
-
+	public AudioSource gameOverSound;
+	public AudioSource song;
 	public static bool endgame=false;
 
 	public void Update()
@@ -19,7 +20,9 @@ public class GameOver : MonoBehaviour
 
 	public void endGame()
 	{
+		song.enabled = false;
+		gameOverSound.enabled = true;
 		canvasObject.enabled = true;
-		score.SetActive(false);
+		score.SetActive(false);		
 	}
 }
