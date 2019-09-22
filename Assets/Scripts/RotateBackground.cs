@@ -6,10 +6,6 @@ public class RotateBackground : MonoBehaviour
 {
     // Start is called before the first frame update
     bool rotated = false;
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -30,9 +26,5 @@ public class RotateBackground : MonoBehaviour
             transform.Rotate(Vector3.down * 90);
             //rotated = true;
         }
-
-        //SerializePrivateVariables void OnTriggerEnter2D(Collider)
-
-
     }
 }

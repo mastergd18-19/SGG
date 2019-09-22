@@ -10,7 +10,7 @@ public class SpawnPieces : MonoBehaviour
 	public PlayerMovement_Translation movement;
 	int randomNumber;
 	int randomNumber2;
-	float repeat=0.5f;
+	float repeat = 4.5f;
 
 	void Start()
 	{
