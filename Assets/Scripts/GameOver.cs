@@ -14,6 +14,11 @@ public class GameOver : MonoBehaviour
 
 	public void Update()
 	{
+		if ((Input.GetKeyDown(KeyCode.Escape)))
+		{
+			reloadMenu();
+		}
+
 		if (endgame == true)
 		{
 			endGame();
